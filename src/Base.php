@@ -194,6 +194,9 @@ abstract class Base
      */
     protected function getTable($table)
     {
+        if(!$this->options['eolink_prefix']){
+            $table = 'eo_' . $table;
+        }
         if(! Schema::connection($this->options['eolink_connection'])->hasTable($table)){
             throw new \Exception($table  . ' 表不存在');
         }
